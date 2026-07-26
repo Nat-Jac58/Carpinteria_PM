@@ -1,0 +1,28 @@
+# Archivos de Windows
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Archivos del sistema
+.DS_Store
+
+# Dependencias (por si en el futuro usas npm)
+node_modules/
+
+# Variables de entorno
+.env
+.env.*
+
+# Archivos comprimidos
+*.zip
+*.rar
+*.7z
