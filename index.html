@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyectos Maderé — Carpintería a medida en Ecuador</title>
+  <meta name="description" content="Portafolio de carpintería a medida: closets, cocinas, bibliotecas, vestidores y mobiliario en madera, melamina, MDF y triplex. Cotización personalizada por WhatsApp." />
+  <meta property="og:title" content="Proyectos Maderé — Carpintería a medida" />
+  <meta property="og:description" content="Diseñamos y fabricamos cualquier mueble o proyecto en madera, melamina, MDF y triplex. Sin catálogos cerrados: cada corte se hace para tu espacio." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fuentes -->
+  <link rel="icon" href="assets/Logo_2.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Estilos propios -->
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- =================== HEADER =================== -->
+  <header id="siteHeader" class="site-header">
+    <a href="#top" class="brand">
+      <img src="assets/Logo_2.png" alt="Proyectos Maderé" class="brand-logo" />
+      Proyectos Maderé
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#materiales">Materiales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#proximamente">Proximamente</a></li>
+        <li><a href="pedido.html">Hacer un pedido</a></li>
+      </ul>
+    </nav>
+    <a href="cotizar.html" class="header-cta">Cotizar proyecto</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer">
+    <button class="drawer-close" id="drawerClose" aria-label="Cerrar">&times;</button>
+    <span class="eyebrow">Menú</span>
+    <ul>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#materiales">Materiales</a></li>
+      <li><a href="#evidencia">Evidencia</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="pedido.html">Hacer un pedido</a></li>
+    </ul>
+    <a href="cotizar.html" class="btn-wood mt-4 w-100 justify-content-center">Cotizar proyecto</a>
+  </aside>
+
+  <main id="top">
+
+    <!-- =================== HERO =================== -->
+    <section class="hero">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+
+      <div class="fade-up fade-up-1 kicker">
+        <span class="rule"></span>
+        <span class="mono">Taller de carpintería personalizada · Ecuador</span>
+      </div>
+
+      <h1 class="fade-up fade-up-2">De la idea al <em>mueble</em>, exactamente a tu medida.</h1>
+
+      <p class="fade-up fade-up-3 lead">
+        Diseñamos y fabricamos cualquier mueble o proyecto, grande o pequeño, común o poco usual —
+        en madera, melamina, MDF, triplex y más. Sin moldes, sin catálogos cerrados: cada corte se
+        hace para tu espacio.
+      </p>
+
+      <div class="fade-up fade-up-4 d-flex flex-wrap gap-3 mt-4">
+        <a href="cotizar.html" class="btn-wood">Cotizar mi proyecto →</a>
+        <a href="#portafolio" class="btn-wood-ghost">Ver portafolio</a>
+      </div>
+
+      <div class="fade-up fade-up-5 materials-strip mono">
+        <span>MADERA</span><div class="tick-line"></div>
+        <span>MELAMINA</span><div class="tick-line"></div>
+        <span>MDF</span><div class="tick-line"></div>
+        <span>TRIPLEX</span>
+      </div>
+    </section>
+
+    <!-- =================== CARRUSEL AUTOMÁTICO =================== -->
+    <section class="auto-carousel" aria-label="Proyectos recientes">
+      <div class="carousel-fade-l" aria-hidden="true"></div>
+      <div class="carousel-fade-r" aria-hidden="true"></div>
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Los slides se duplican vía JS para loop infinito -->
+      </div>
+    </section>
+
+    <!-- =================== PORTAFOLIO =================== -->
+    <section id="portafolio">
+      <div class="reveal d-flex flex-wrap justify-content-between align-items-end mb-5 gap-4">
+        <div style="max-width: 640px">
+          <span class="eyebrow">Portafolio</span>
+          <h2>Proyectos entregados, <span class="text-amber">hechos a medida</span>.</h2>
+          <p class="mt-3 text-paper-dim" style="max-width: 52ch">
+            Una selección de trabajos recientes del taller. Cada pieza fue diseñada para un espacio
+            específico, no adaptada de un catálogo.
+          </p>
+        </div>
+        <div class="mono" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted);">
+          Ejemplos · Proyectos - Ideas
+        </div>
+      </div>
+
+      <div class="row g-3" id="portfolioGrid"><!-- render por JS --></div>
+    </section>
+
+    <!-- =================== TALLER STRIP =================== -->
+    <section class="workshop-strip">
+      <div class="collage-grid" aria-hidden="true">
+        <img src="assets/proyecto-cocina.jpg" alt="" loading="lazy" />
+        <img src="assets/proyecto-closet.jpg" alt="" loading="lazy" />
+        <img src="assets/proyecto-biblioteca.jpg" alt="" loading="lazy" />
+        <img src="assets/proyecto-vestidor.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="overlay"></div>
+      <div class="content">
+        <div class="reveal">
+          <span class="eyebrow">Del taller</span>
+          <h2>Cada corte se piensa. Cada acabado se cuida.</h2>
+          <p class="mt-3 text-paper-dim">
+            El taller es pequeño a propósito. Nos permite atender pocos proyectos a la vez, con
+            seguimiento directo y sin intermediarios. Tú hablas con quien fabrica tu mueble.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== PROCESO =================== -->
+    <section id="proceso">
+      <div class="reveal mb-5" style="max-width: 640px">
+        <span class="eyebrow">Orden de trabajo</span>
+        <h2>Así avanza tu proyecto, de la idea a la entrega.</h2>
+        <p class="mt-3 text-paper-dim">
+          Un proceso claro, pensado para que sepas exactamente en qué etapa está tu pedido en todo
+          momento.
+        </p>
+      </div>
+
+      <div class="proceso-list" id="procesoList"><!-- render por JS --></div>
+    </section>
+
+    <!-- =================== MATERIALES =================== -->
+    <section id="materiales">
+      <div class="reveal mb-5" style="max-width: 640px">
+        <span class="eyebrow">Materiales</span>
+        <h2>Trabajamos con el material que tu proyecto necesita.</h2>
+        <p class="mt-3 text-paper-dim">
+          Cada material tiene su propio comportamiento y acabado. Te asesoramos sobre cuál conviene
+          según el uso, el ambiente y el presupuesto.
+        </p>
+      </div>
+
+      <div class="reveal mat-grid" id="materialsGrid"><!-- render por JS --></div>
+    </section>
+
+    <!-- =================== CONTACTO =================== -->
+    <section id="contacto">
+      <div class="reveal mb-5" style="max-width: 640px">
+        <span class="eyebrow">Contacto</span>
+        <h2>Cuéntanos qué necesitas construir.</h2>
+      </div>
+
+      <div class="reveal contact-box">
+        <div>
+          <h3 style="font-size: 1.5rem;">Escríbenos y empecemos con tu proyecto</h3>
+          <p class="mt-3 text-paper-dim">
+            Respondemos por WhatsApp o Telegram. Cuéntanos qué mueble o proyecto tienes en mente,
+            el material que prefieres y las medidas que manejas — con eso empezamos a definir tu
+            cotización. También puedes usar nuestro <a href="cotizar.html" class="text-amber">cotizador automático</a>.
+          </p>
+          <div class="contact-tags">
+            <span>Cotización gratuita</span>
+            <span>Sin catálogos cerrados</span>
+            <span>Envíos a domicilio</span>
+          </div>
+        </div>
+        <div>
+          <a class="contact-btn" href="https://wa.me/593982486175" target="_blank" rel="noopener">
+            <span class="left">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
+              </span>
+              <span><span class="label">WhatsApp</span><span class="sub">+593 98 248 6175</span></span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="contact-btn" href="https://t.me/vinicioserrano" target="_blank" rel="noopener">
+            <span class="left">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M21 4.5 2.6 11.7c-.9.4-.9 1.6.1 1.9l4.4 1.4 1.7 5.3c.2.7 1.1.9 1.6.4l2.5-2.4 4.6 3.4c.7.5 1.7.1 1.9-.7L22 5.6c.2-.9-.7-1.6-1-1.1Z"/></svg>
+              </span>
+              <span><span class="label">Telegram</span><span class="sub">@vinicioserrano</span></span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="contact-btn" href="https://www.tiktok.com/@vinisioserrano" target="_blank" rel="noopener">
+            <span class="left">
+              <span class="icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M16 3v9.5a3.5 3.5 0 1 1-3-3.46V6.2A6.5 6.5 0 1 0 19 12.7V9c-1.1 0-2.2-.4-3-1.1V3h0Z"/></svg>
+              </span>
+              <span><span class="label">TikTok</span><span class="sub">@vinicioserrano</span></span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- =================== PROXIMAMENTE =================== -->
+    <section id="proximamente">
+      <div class="reveal">
+        <h2>Proximamente en Proyectos Maderé</h2>
+      </div>
+      <!-- =================== EVIDENCIA =================== -->
+      <div class="evidence-wrap">
+        <div class="evidence-frame reveal">
+          <div class="mono">Próximamente:<br>Registro de proyectos en TikTok</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Proyectos Maderé — Tu carpintería a medida</div>
+      <div class="mono">Contáctenos para más detalles!</div>
+    </footer>
+  </main>
+
+  <a class="sticky-wa" href="https://wa.me/593982486175" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
