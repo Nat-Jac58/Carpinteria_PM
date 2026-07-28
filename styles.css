@@ -356,34 +356,83 @@ section h2 { font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.15; margin-
 .contact-btn:hover .arrow { transform: translateX(4px); }
 
 /* -------- Sticky WhatsApp -------- */
-.sticky-wa {
+.fab-stack {
     position: fixed;
     bottom: 24px;
     right: 24px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.fab-toggle {
     width: 62px;
     height: 62px;
-    background: #25D366;
-    color: #fff;
+    background: rgba(201, 138, 75, 0.55);
+    backdrop-filter: blur(2px);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.fab-toggle:hover,
+.fab-toggle:focus-visible {
+    background: rgba(201, 138, 75, 0.95);
+    transform: scale(1.08);
+    box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+/* En móviles no hay :hover, así que usamos :active para dar la misma respuesta al tocar */
+.fab-toggle:active {
+    background: rgba(201, 138, 75, 0.95);
+    transform: scale(1.05);
+}
+
+.fab-stack.open .fab-toggle i { transform: rotate(135deg); }
+.fab-toggle i { display: inline-flex; transition: transform .25s ease; line-height: 1; }
+
+.fab-item {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 32px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.25);
-    z-index: 1000;
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.sticky-wa:hover {
-    transform: scale(1.08);
     color: #fff;
-    box-shadow: 0 12px 28px rgba(0,0,0,.35);
+    font-size: 24px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+    opacity: 0;
+    transform: translateY(16px) scale(.8);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .25s ease;
 }
 
-.sticky-wa i {
-    line-height: 1;
+.fab-stack.open .fab-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
 }
+
+/* Retraso escalonado al abrir, para que suban uno tras otro */
+.fab-stack.open .fab-item.fab-whatsapp { transition-delay: 0s; }
+.fab-stack.open .fab-item.fab-telegram { transition-delay: .05s; }
+.fab-stack.open .fab-item.fab-tiktok   { transition-delay: .1s; }
+
+.fab-item:hover { transform: translateY(0) scale(1.08); color: #fff; }
+
+.fab-item.fab-whatsapp { background: #25D366; }
+.fab-item.fab-telegram { background: #229ED9; }
+.fab-item.fab-tiktok   { background: #000000; }
 
 /* -------- Footer -------- */
 footer.site-footer {

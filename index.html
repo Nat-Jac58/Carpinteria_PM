@@ -13,6 +13,7 @@
   <!-- Fuentes -->
   <link rel="icon" href="assets/Logo_2.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -242,9 +243,38 @@
     </footer>
   </main>
 
-  <a class="sticky-wa" href="https://wa.me/593982486175" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+  <!-- =================== FAB DE CONTACTO =================== -->
+  <div class="fab-stack" id="fabStack">
+    <a class="fab-item fab-tiktok" href="https://www.tiktok.com/@vinisioserrano" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="bi bi-tiktok"></i>
+    </a>
+    <a class="fab-item fab-telegram" href="https://t.me/vinicioserrano" target="_blank" rel="noopener" aria-label="Telegram">
+      <i class="bi bi-telegram"></i>
+    </a>
+    <a class="fab-item fab-whatsapp" href="https://wa.me/593982486175" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+    <button class="fab-toggle" id="fabToggle" aria-label="Ver opciones de contacto" aria-expanded="false">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var stack = document.getElementById('fabStack');
+      var toggle = document.getElementById('fabToggle');
+      toggle.addEventListener('click', function () {
+        var isOpen = stack.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!stack.contains(e.target)) {
+          stack.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 
   <!-- Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
