@@ -94,10 +94,16 @@ function compute() {
 function buildResumen(c, nombre, presupuesto, detalles) {
   const lines = ["*Nueva solicitud de presupuesto — Proyectos Maderé*", ""];
 
-  let saludo = "";
-  if (nombre) saludo += `Hola ${nombre}.`;
-  if (presupuesto) saludo += `${saludo ? " " : ""}Presupuesto disponible: USD ${presupuesto}.`;
-  if (saludo) lines.push(`👋 ${saludo}`, "");
+  const excedePresupuesto = presupuesto && c.estimado > parseFloat(presupuesto);
+
+  if (nombre) lines.push(`👋 Hola ${nombre}.`, "");
+  if (presupuesto) {
+    if (excedePresupuesto) {
+      lines.push("⚠️ Lo que has seleccionado ha superado tu presupuesto máximo.", "");
+    } else {
+      lines.push(`Presupuesto máximo: USD ${presupuesto}.`, "");
+    }
+  }
 
   lines.push(
     `📐 Proyecto: ${c.tipoLabel}`,
@@ -105,27 +111,33 @@ function buildResumen(c, nombre, presupuesto, detalles) {
     `✨ Acabado: ${c.acab.label}`,
     `📏 Medidas: ${c.ancho} m ancho × ${c.alto} m alto × ${c.fondo} m fondo (${c.area.toFixed(2)} m²)`,
     "",
-    `💰 Presupuesto temporal: USD ${c.rangoMin} – ${c.rangoMax}`
+    `💰 Presupuesto estimado: USD ${c.rangoMin} – ${c.rangoMax}`
   );
   if (detalles) lines.push("", "📝 Detalles adicionales:", detalles);
-  lines.push("", "El presupuesto final se debe acordar con el taller.");
+  lines.push("", "El precio final se debe acordar con el taller.");
   return lines.join("\n");
 }
 
 /* ---------- Modal de resultado ---------- */
 let resultModal;
+let lastResultado = null; // se guarda en localStorage solo si el cliente confirma con "Realizar un pedido"
+
 function mostrarResultado() {
   const c = compute();
   const nombre = document.getElementById("q_nombre").value.trim();
   const presupuesto = document.getElementById("q_presupuesto").value.trim();
   const detalles = document.getElementById("q_detalles").value.trim();
 
+  const excedePresupuesto = presupuesto && c.estimado > parseFloat(presupuesto);
+
   let saludoHtml = "";
-  if (nombre || presupuesto) {
-    let saludo = "";
-    if (nombre) saludo += `Hola ${nombre}.`;
-    if (presupuesto) saludo += `${saludo ? " " : ""}Presupuesto disponible: USD ${presupuesto}.`;
-    saludoHtml = `<p class="result-greet">👋 ${saludo}</p>`;
+  if (nombre) saludoHtml += `<p class="result-greet">👋 Hola ${nombre}.</p>`;
+  if (presupuesto) {
+    if (excedePresupuesto) {
+      saludoHtml += `<p class="result-greet result-warning">Lo que has seleccionado ha superado tu presupuesto máximo.</p>`;
+    } else {
+      saludoHtml += `<p class="result-greet">Presupuesto máximo: USD ${presupuesto}.</p>`;
+    }
   }
 
   document.getElementById("resultBody").innerHTML = `
@@ -137,22 +149,22 @@ function mostrarResultado() {
       <div class="row"><span class="k">Medidas</span><span class="v">${c.ancho} × ${c.alto} × ${c.fondo} m (${c.area.toFixed(2)} m²)</span></div>
     </div>
     <div class="result-amount">
-      <span class="eyebrow">Presupuesto temporal</span>
+      <span class="eyebrow">Presupuesto estimado</span>
       <div class="amount">USD ${c.rangoMin.toLocaleString()} – ${c.rangoMax.toLocaleString()}</div>
     </div>
     ${detalles ? `<div class="result-detalles"><span class="k">Detalles adicionales</span><p>${detalles}</p></div>` : ""}
-    <p class="result-disclaimer">El presupuesto final se debe acordar con el taller.</p>
+    <p class="result-disclaimer">El precio final se debe acordar con el taller.</p>
   `;
 
-  // Guardamos todo listo para pasar a pedido.html si el cliente confirma
-  const pedidoAprox = {
+  // Dejamos el resultado listo, pero SOLO se guarda en localStorage si el
+  // cliente confirma con el botón "Realizar un pedido" dentro de este modal.
+  lastResultado = {
     nombre, presupuesto,
     tipo: c.tipoLabel, material: c.mat.label, acabado: c.acab.label,
     medidas: `${c.ancho} × ${c.alto} × ${c.fondo} m (${c.area.toFixed(2)} m²)`,
     rangoMin: c.rangoMin, rangoMax: c.rangoMax,
     detalles,
   };
-  localStorage.setItem("madere_pedido_aprox", JSON.stringify(pedidoAprox));
 
   if (!resultModal) resultModal = new bootstrap.Modal(document.getElementById("resultModal"));
   resultModal.show();
@@ -180,6 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("btnCalcular").addEventListener("click", mostrarResultado);
   document.getElementById("btnIrPedido").addEventListener("click", () => {
+    if (lastResultado) {
+      localStorage.setItem("madere_pedido_aprox", JSON.stringify(lastResultado));
+    }
     window.location.href = "pedido.html";
   });
 

@@ -76,7 +76,7 @@ function cargarPedidoAprox() {
   bloque.style.display = "block";
   texto.textContent =
     `Proyecto: ${pedidoAprox.tipo} · Material: ${pedidoAprox.material} · Acabado: ${pedidoAprox.acabado} · ` +
-    `Medidas: ${pedidoAprox.medidas} · Presupuesto temporal: USD ${pedidoAprox.rangoMin} – ${pedidoAprox.rangoMax}. ` +
+    `Medidas: ${pedidoAprox.medidas} · Presupuesto estimado: USD ${pedidoAprox.rangoMin} – ${pedidoAprox.rangoMax}. ` +
     `Ya incluimos esto en tu mensaje, no necesitas volver a escribirlo.`;
 
   document.getElementById("introText").textContent =
